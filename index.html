@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOPHÉA, van keukentafel tot atelier</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="intro">
+    <p class="kicker">Een merk in de tijd</p>
+    <h1><img src="img/sophea-logo.png" alt="SOPHÉA" class="logo"></h1>
+    <p class="subtitel">Hoe een idee aan de eettafel uitgroeide tot een eigen sieradenmerk. Sleep door de tijd en zie wat er veranderde.</p>
+  </header>
+
+  <main>
+    <section class="tijd" aria-labelledby="tijd-titel">
+      <h2 id="tijd-titel" class="sr-only">Tijdlijn</h2>
+
+      <figure class="moment">
+        <div class="moment-media" id="momentMedia"></div>
+        <figcaption>
+          <p class="moment-datum" id="momentDatum"></p>
+          <h3 class="moment-titel" id="momentTitel"></h3>
+          <p class="moment-tekst" id="momentTekst"></p>
+          <p class="moment-les" id="momentLes"></p>
+          <p class="moment-hint" id="momentHint" hidden>⇆ Sleep over de foto: links toen, rechts nu.</p>
+        </figcaption>
+      </figure>
+
+      <div class="slider-wrap">
+        <label for="tijdSlider" class="sr-only">Kies een moment in de tijd</label>
+        <input type="range" id="tijdSlider" min="0" max="0" step="1" value="0">
+        <ol class="mijlpalen" id="mijlpalen"></ol>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

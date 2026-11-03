@@ -1,0 +1,675 @@
+:root {
+  --bg: #fbf6ec;
+  --kaart: #fffdf8;
+  --tekst: #32151e;
+  --zacht: #7a6268;
+  --accent: #c9a96e;
+  --lijn: rgba(50, 21, 30, 0.15);
+  --les: #f3e6d0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--tekst);
+  font-family: "Jost", system-ui, sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  transition: background-color 0.8s ease;
+}
+
+h1, h2, h3 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.intro {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px 24px 24px;
+  text-align: center;
+}
+
+.kicker {
+  margin: 0 0 12px;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+
+.subtitel {
+  margin: 16px auto 0;
+  max-width: 560px;
+  font-size: 1.1rem;
+  color: var(--zacht);
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.moment {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 40px;
+  align-items: center;
+  background: var(--kaart);
+  border-radius: 16px;
+  padding: 24px;
+  transition: background-color 0.8s ease;
+}
+
+.moment-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--les);
+  transition: aspect-ratio 0.3s ease;
+}
+
+.moment-media img,
+.moment-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  animation: infaden 0.5s ease;
+}
+
+@keyframes infaden {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.moment-datum {
+  margin: 0 0 6px;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.moment-titel { font-size: 1.8rem; }
+
+.moment-tekst {
+  margin: 12px 0 0;
+  font-size: 1.05rem;
+}
+
+.moment-les {
+  display: none;
+  margin: 16px 0 0;
+  padding: 12px 16px;
+  border-left: 3px solid var(--accent);
+  background: var(--les);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.95rem;
+}
+
+.moment-les:not(:empty) { display: block; }
+
+.slider-wrap {
+  --n: 15;
+  --gat: 6px;
+  --bol: 18px;
+  margin: 32px 0 0;
+}
+
+#tijdSlider {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  width: calc(100% - (100% - (var(--n) - 1) * var(--gat)) / var(--n) + var(--bol));
+  height: var(--bol);
+  margin: 0 auto;
+  background: transparent;
+  cursor: pointer;
+}
+
+#tijdSlider::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--tekst) var(--vol, 0%), var(--lijn) var(--vol, 0%));
+}
+
+#tijdSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: var(--bol);
+  height: var(--bol);
+  margin-top: calc((4px - var(--bol)) / 2);
+  border-radius: 50%;
+  background: var(--tekst);
+  border: 3px solid var(--kaart);
+  box-shadow: 0 0 0 1px var(--tekst);
+}
+
+#tijdSlider::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--lijn);
+}
+
+#tijdSlider::-moz-range-progress {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--tekst);
+}
+
+#tijdSlider::-moz-range-thumb {
+  width: var(--bol);
+  height: var(--bol);
+  border-radius: 50%;
+  background: var(--tekst);
+  border: 3px solid var(--kaart);
+  box-shadow: 0 0 0 1px var(--tekst);
+  box-sizing: border-box;
+}
+
+.mijlpalen {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+  gap: var(--gat);
+}
+
+.mijlpalen li { display: flex; min-width: 0; }
+
+.mijlpalen button {
+  width: 100%;
+  min-height: 52px;
+  font: inherit;
+  font-size: clamp(0.62rem, 0.78vw, 0.8rem);
+  line-height: 1.25;
+  padding: 6px 3px;
+  background: var(--kaart);
+  border: 1px solid var(--lijn);
+  border-radius: 8px;
+  color: var(--zacht);
+  cursor: pointer;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  overflow-wrap: break-word;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.mijlpalen button:hover { border-color: var(--accent); }
+
+.mijlpalen button[aria-current="true"] {
+  background: var(--tekst);
+  border-color: var(--tekst);
+  color: var(--kaart);
+  font-weight: 500;
+}
+
+.leeg {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 16px;
+  font-size: 0.9rem;
+  color: var(--zacht);
+  background: repeating-linear-gradient(45deg, var(--les), var(--les) 12px, var(--kaart) 12px, var(--kaart) 24px);
+}
+
+.tijd { margin-top: 8px; }
+
+.vergelijk-beeld {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.vergelijk-beeld > div {
+  position: absolute;
+  inset: 0;
+}
+
+.vergelijk-beeld .oud {
+  clip-path: inset(0 calc(100% - var(--pos, 50%)) 0 0);
+}
+
+.vergelijk-beeld .oud .leeg { padding-right: 52%; }
+.vergelijk-beeld .nieuw .leeg { padding-left: 52%; }
+
+.vergelijk-beeld .streep {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pos, 50%);
+  width: 2px;
+  background: #fff;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+.vergelijk-beeld .streep::after {
+  content: "‹ ›";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--tekst);
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+}
+
+.vergelijk-beeld input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: ew-resize;
+  margin: 0;
+}
+
+.vergelijk-beeld:has(input:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.label {
+  position: absolute;
+  top: 12px;
+  padding: 2px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 0.85rem;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.label.links { left: 12px; }
+.label { transition: opacity 0.2s ease; }
+.alleen-nu .label.links,
+.alleen-toen .label.rechts { opacity: 0; }
+.label.rechts { right: 12px; }
+
+.moment-hint {
+  margin: 20px 0 0;
+  font-size: 0.9rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.beeld-plek {
+  position: absolute;
+  inset: 0;
+}
+
+.pijl {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--tekst);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.pijl:hover { background: #fff; }
+.pijl.vorige { left: 12px; }
+.pijl.volgende { right: 12px; }
+
+.moment-media:has(.vergelijk-beeld) .pijl,
+.moment-media:has(.collage) .pijl {
+  top: auto;
+  bottom: 12px;
+  transform: none;
+}
+
+.teller {
+  position: absolute;
+  bottom: 14px;
+  right: 64px;
+  z-index: 3;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 0.8rem;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.moment-media:not(:has(.vergelijk-beeld)) .teller { right: 12px; top: 12px; bottom: auto; }
+
+.stippen {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  gap: 6px;
+}
+
+.stippen button {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.stippen button[aria-current="true"] { background: #fff; transform: scale(1.3); }
+
+.bijschrift {
+  position: absolute;
+  left: 12px;
+  bottom: 40px;
+  z-index: 2;
+  margin: 0;
+  max-width: calc(100% - 24px);
+  padding: 4px 12px;
+  border-radius: 6px;
+  background: rgba(50, 21, 30, 0.75);
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.moment-media video[controls] { object-fit: contain; background: #000; }
+
+.collage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 4px;
+  background: var(--kaart);
+}
+
+.collage-tegel:first-child {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.collage[data-aantal="8"] .collage-tegel:nth-child(6),
+.collage[data-aantal="7"] .collage-tegel:nth-child(6),
+.collage[data-aantal="7"] .collage-tegel:nth-child(7) { grid-column: span 2; }
+.collage[data-aantal="6"] .collage-tegel:nth-child(6) { grid-column: span 4; }
+.collage[data-aantal="5"],
+.collage[data-aantal="4"],
+.collage[data-aantal="3"] { grid-template-rows: repeat(2, 1fr); }
+
+.collage-tegel {
+  position: relative;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  cursor: zoom-in;
+  background: var(--les);
+}
+
+.collage-tegel img,
+.collage-tegel video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.collage-tegel:hover img { transform: scale(1.05); }
+
+.collage-tegel .leeg { font-size: 0.7rem; padding: 6px; }
+
+.collage-tegel:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: -3px;
+}
+
+.groot {
+  width: min(92vw, 1000px);
+  max-height: 92vh;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: #1b1416;
+  overflow: hidden;
+}
+
+.groot::backdrop { background: rgba(20, 10, 14, 0.8); }
+
+.groot-beeld {
+  height: min(80vh, 700px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.groot-beeld img,
+.groot-beeld video {
+  max-width: 100%;
+  max-height: min(80vh, 700px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.groot-beeld .leeg { width: 100%; height: 100%; }
+
+.groot-tekst {
+  margin: 0;
+  padding: 12px 16px;
+  color: #f3e6d0;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.groot-sluit {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: #32151e;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+@media (max-width: 760px) {
+  .intro { padding-top: 48px; }
+
+  .deco { display: none; }
+
+  .moment {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 16px;
+  }
+
+  .moment-titel { font-size: 1.5rem; }
+
+  .slider-wrap { --gat: 3px; }
+
+  .mijlpalen button span { display: none; }
+
+  .mijlpalen button {
+    min-height: 22px;
+    padding: 0;
+    border-radius: 4px;
+  }
+
+  .teller { display: none; }
+
+  .collage { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); }
+  .collage-tegel:nth-child(n+7) { display: none; }
+  .collage[data-aantal] .collage-tegel:not(:first-child) { grid-column: auto; }
+  .collage[data-aantal] { grid-template-rows: repeat(3, 1fr); }
+
+  .pijl {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (min-width: 761px) {
+  .intro {
+    max-width: 1400px;
+    padding: 20px 24px 14px;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: end;
+  }
+
+  .kicker { margin: 0 0 4px; font-size: 0.75rem; }
+
+  h1 { font-size: clamp(1.6rem, 2.4vw, 2.1rem); }
+
+  .subtitel {
+    margin: 4px 0 0;
+    max-width: none;
+    font-size: 0.95rem;
+  }
+
+  main { max-width: 1400px; }
+
+  .moment {
+    grid-template-columns: 2fr 1fr;
+    gap: 32px;
+    padding: 16px;
+  }
+
+  .moment-media {
+    aspect-ratio: auto;
+    height: calc(100vh - 305px);
+    height: calc(100dvh - 305px);
+    min-height: 240px;
+  }
+
+  .moment-titel { font-size: 1.6rem; }
+  .moment-tekst { font-size: 1rem; }
+
+  .slider-wrap { margin: 16px 0 20px; }
+
+  .moment figcaption {
+    max-height: calc(100vh - 305px);
+    max-height: calc(100dvh - 305px);
+    min-height: 240px;
+    overflow-y: auto;
+    align-self: center;
+  }
+}
+
+@media (min-width: 761px) and (max-height: 700px) {
+  .moment-titel { font-size: 1.35rem; }
+  .moment-tekst { font-size: 0.9rem; margin-top: 8px; }
+  .moment-les { font-size: 0.85rem; padding: 8px 12px; margin-top: 10px; }
+  .moment-hint { margin-top: 10px; font-size: 0.8rem; }
+  .mijlpalen button { min-height: 44px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+h1 .logo {
+  height: 0.95em;
+  width: auto;
+  vertical-align: -0.12em;
+  margin-right: 0.1em;
+}
+
+.moment-media img.passend {
+  object-fit: contain;
+  padding: 12%;
+}
+
+.moment { position: relative; }
+
+.deco {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  width: 120px;
+  height: 44px;
+  pointer-events: none;
+  color: var(--accent);
+}
+
+.deco span {
+  position: absolute;
+  display: block;
+  opacity: 0.75;
+  animation: zweven 4s ease-in-out infinite;
+}
+
+.deco svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.deco-1 { width: 38px; height: 38px; right: 0; top: 0; }
+.deco-2 { width: 28px; height: 28px; right: 48px; top: 8px; animation-delay: -1.3s; transform: rotate(-12deg); }
+.deco-3 { width: 24px; height: 24px; right: 88px; top: 4px; animation-delay: -2.6s; }
+
+.moment:has(.deco span) figcaption { padding-top: 44px; }
+
+@keyframes zweven {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -5px; }
+}
+
+.moment-les::before {
+  content: "Wat we leerden";
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}

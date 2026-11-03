@@ -189,7 +189,7 @@ const MOMENTEN = [
           { src: "img/herfst/lumi-handchain-bruin-gedragen.jpg", tekst: "Lumi handchain, bruin" },
           { src: "img/herfst/capri-aubergine-gedragen.jpg", tekst: "Capri, aubergine" },
           { src: "img/herfst/cotexcapri-bordeaux-gedragen.jpg", tekst: "Côte x Capri, bordeaux" },
-          { src: "img/herfst/elara-oorbellen-aubergine-gedragen.jpg", tekst: "Elara oorbellen, aubergine" },
+          { src: "img/herfst/elara-oorbellen-gedragen.jpg", tekst: "Elara oorbellen, aubergine" },
           { src: "img/herfst/cotexcapri-olijfrgoen.jpg", tekst: "Côte x Capri, olijfgroen" },
           { src: "img/herfst/lumi-handchain-bordeaux-gerdagen.jpg", tekst: "Lumi handchain, bordeaux" },
           { src: "img/herfst/stras-armband&handchain-gedragen.jpg", tekst: "Stras armband en handchain" }
